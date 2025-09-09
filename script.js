@@ -623,7 +623,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 // GitHub API Integration
 document.addEventListener('DOMContentLoaded', function () {
-  const username = 'udayupadhyay.uu';
+  const username = 'udayupadhyayuu';
 
   // GitHub API endpoints
   const endpoints = {
