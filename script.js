@@ -868,3 +868,59 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 });
+
+const emailInput = document.getElementById("email");
+const emailError = document.getElementById("emailError");
+
+emailInput.addEventListener("input", () => {
+  if (emailInput.validity.valid) {
+    emailError.classList.add("hidden");
+  } else {
+    emailError.classList.remove("hidden");
+  }
+});
+
+const firstNameInput = document.getElementById("firstName");
+const lastNameInput = document.getElementById("lastName");
+const firstNameError = document.getElementById("firstNameError");
+const lastNameError = document.getElementById("lastNameError");
+
+// Function to validate names (only letters, at least 2 chars)
+function validateName(name) {
+  return /^[a-zA-Z]{2,}$/.test(name.trim());
+}
+
+// Live validation
+firstNameInput.addEventListener("input", () => {
+  if (validateName(firstNameInput.value)) {
+    firstNameError.classList.add("hidden");
+  } else {
+    firstNameError.classList.remove("hidden");
+  }
+});
+
+lastNameInput.addEventListener("input", () => {
+  if (validateName(lastNameInput.value)) {
+    lastNameError.classList.add("hidden");
+  } else {
+    lastNameError.classList.remove("hidden");
+  }
+});
+
+// Also check on form submit
+form.addEventListener("submit", (e) => {
+  let valid = true;
+
+  if (!validateName(firstNameInput.value)) {
+    firstNameError.classList.remove("hidden");
+    valid = false;
+  }
+
+  if (!validateName(lastNameInput.value)) {
+    lastNameError.classList.remove("hidden");
+    valid = false;
+  }
+
+  // prevent submit if invalid
+  if (!valid) e.preventDefault();
+});
